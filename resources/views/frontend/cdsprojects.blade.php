@@ -319,7 +319,7 @@
                                         <h2 class="h4 pb-1 mb-2">
                                             <a href="#">{{ $project->title }}</a>
                                         </h2>
-                                        <p class="mb-4 mb-lg-5">{{ $project->description }}</p>
+                                        <p class="mb-4 mb-lg-5">{!! $project->description !!}</p>
                                         <div class="d-flex">
                                             <a href='/cdsproject/{{ $project->id }}' type="button"
                                                 class="btn btn-outline-primary px-3 px-lg-4 me-3">
