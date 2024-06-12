@@ -140,7 +140,7 @@
         Swal.fire('Success!',"{{ session('message') }}",'success');
     @endif
    @if (session('error'))
-        Swal.fire('Incorrect Pin!',"{{ session('error') }}",'error');
+        Swal.fire('Error!',"{{ session('error') }}",'error');
     @endif
     $("#reset_pin").click(function() {
         Swal.fire({

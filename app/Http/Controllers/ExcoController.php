@@ -68,7 +68,7 @@ class ExcoController extends Controller
                 $data = array('name' => $user->name, 'description' => $description, 'email' => $email, 'cdsgroup' => $cdsgroup, 'title' => $title);
                 Mail::send('mail.cdsmessage', $data, function ($message) use ($email, $cdsgroup) {
                     $message->to($email)->subject('Important message from ' . $cdsgroup);
-                    $message->from('support@cds.cthostel.com', 'NYSC-CDS');
+                    $message->from('nysc@cds.cthostel.com', 'NYSC-CDS');
                 });
             }
             return redirect()->back()->with('message', "Announcement Created Successfully! CDS Members will now be notified!");
@@ -367,7 +367,7 @@ class ExcoController extends Controller
                 $data = array('accountname' => $accountname,'bank'=>$bank,'accountno' => $accountno,'amount' => $amount, 'name' => $user->name, 'description' => $description, 'email' => $email, 'cdsgroup' => $cdsgroup, 'title' => $title);
                 Mail::send('mail.cdspayment', $data, function ($message) use ($email, $cdsgroup) {
                     $message->to($email)->subject('Urgent Payment Alert from ' . $cdsgroup);
-                    $message->from('support@cds.cthostel.com', 'NYSC-CDS');
+                    $message->from('nysc@cds.cthostel.com', 'NYSC-CDS');
                 });
             }
             return redirect()->back()->with('message', "Announcement Created Successfully! CDS Members will now be notified!");
