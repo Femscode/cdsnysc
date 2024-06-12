@@ -27,7 +27,7 @@
                             </div>
                             <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
                             <div class="activity-content">
-                               <a href="#" class="fw-bold text-dark">{{ $act->title }}</a><br>{{ $act->description }}
+                               <a href="#" class="fw-bold text-dark">{{ $act->title }}</a><br>{!! $act->description !!}
                               <br> 
                               <span style='color:red'>{{ \Carbon\Carbon::parse($act->created_at)->diffForHumans() }}</span>
                             </div>

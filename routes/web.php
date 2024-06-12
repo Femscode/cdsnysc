@@ -62,7 +62,7 @@ Route::any('/resend_sms/{id}', [BulkSMSController::class, 'resendSMS'])->name('r
 
 //the subdomain website routes
 
-Route::middleware(['exco'])->group(function () {
+Route::middleware(['supervisor'])->group(function () {
     Route::get('/supervisordashboard', [SupervisorController::class, 'dashboard'])->name('supervisordashboard');
     Route::get('/makeexco/{id}', [SupervisorController::class, 'makeexco'])->name('makeexco');
     Route::get('/viewexcos', [SupervisorController::class, 'viewexcos'])->name('viewexcos');
@@ -86,6 +86,15 @@ Route::middleware(['exco'])->group(function () {
     Route::any('/deleteproject/{id}', [ExcoController::class, 'deleteproject'])->name('deleteproject');
     Route::post('/saveproject', [ExcoController::class, 'saveproject'])->name('saveproject');
     Route::get('/viewprojects', [ExcoController::class, 'projects'])->name('projects');
+    
+    Route::get('/addpayment', [ExcoController::class, 'addpayment'])->name('addpayment');
+    Route::post('/savepayment', [ExcoController::class, 'savepayment'])->name('savepayment');
+    Route::get('/viewpayments', [ExcoController::class, 'payments'])->name('payments');
+    Route::any('/deletepayment/{id}', [ExcoController::class, 'deletepayment'])->name('deletepayment');
+    
+    Route::get('/viewtransactions/{id}', [ExcoController::class, 'viewtransactions'])->name('viewtransactions');
+    Route::get('/markpaid/{paymentId}/{userId}', [ExcoController::class, 'markpaid'])->name('markpaid');
+    Route::get('/markunpaid/{paymentId}/{userId}', [ExcoController::class, 'markunpaid'])->name('markunpaid');
     
 
 });
@@ -253,7 +262,7 @@ Route::middleware(['auth'])->group(function () {
         Route::any('/admin_delete_duplicate/{type}/{id}', [App\Http\Controllers\SubscriptionController::class, 'admin_delete_duplicate'])->name('admin_delete_duplicate');
     });
 });
-Route::get('/{slug}', [WaybillController::class, 'slug'])->name('slug')->middleware('auth');
+// Route::get('/{slug}', [WaybillController::class, 'slug'])->name('slug')->middleware('auth');
 
 //business domain end
 //the subdomains

@@ -12,10 +12,26 @@
                 Join the CDS whatsapp group of <b>{{ App\Models\User::find($user->id)->cdsname->name }} ({{ $user->batch }})</b><br>
                 <a class='btn btn-info btn-sm' href='{{ $cdsgroup->whatsapp }}'>Click To Join →</a>
             </div>
-            {{-- <div class='alert alert-info'>
-                Payment Ongoing for CDS certificate for Batch B Stream 1 
-                <a class='btn btn-info btn-sm' href=''>Click To Pay →</a>
-            </div> --}}
+            @foreach($payments as $payment)
+            <div class='alert alert-info'>
+               <h4>{{ $payment->title }}</h4><br>
+               <ul>
+                
+                <li><b>Bank Name :</b> {{ $payment->bank }}</li>
+                <li><b>Account Name :</b> {{ $payment->accountname }}</li>
+                <li><b>Account Number :</b> {{ $payment->accountno }}</li>
+                <li><b>Amount To Be Paid :</b> <b>NGN{{ number_format($payment->amount) }}</b></li>
+               </ul>
+               @if( App\Models\User::find($user->id)->paymentstatus($payment->id,$user->id) == true)
+               <span class='alert alert-sm alert-success'>Congratulations, your payment has been confirmed!</span>
+               @else 
+               {{-- <span class='alert alert-sm alert-danger'>Not Paid</span> --}}
+               <a class='btn btn-info btn-sm' href='https://wa.me/234{{ substr($payment->adminphone,1) }}'>Message Exco To Confirm Your Payment→</a>
+               @endif
+                {{-- <a class='btn btn-info btn-sm' href='#'>Click To Pay →</a> --}}
+            </div>
+            @endforeach
+          
             <div class="row">
                 
 
@@ -103,7 +119,7 @@
                             </div>
                             <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
                             <div class="activity-content">
-                               <a href="#" class="fw-bold text-dark">{{ $act->title }}</a><br>{{ $act->description }}
+                               <a href="#" class="fw-bold text-dark">{{ $act->title }}</a><br>{!! $act->description !!}
                               <br> 
                               <span style='color:red'>{{ \Carbon\Carbon::parse($act->created_at)->diffForHumans() }}</span>
                             </div>
@@ -111,7 +127,7 @@
                         @endforeach
 
                         <div class="activity-item d-flex">
-                            <div class="activite-label">+0
+                            <div class="activite-label">
                             </div>
                             <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
                             <div class="activity-content">
@@ -120,9 +136,10 @@
                             </div><!-- End activity item-->
 
 
-                    </div>
-
-                </div>
+                            </div>
+                            
+                            </div>
+                        <a href='/notifications' class='btn btn-success'>View More Announcements</a>
             </div><!-- End Recent Activity -->
 
 

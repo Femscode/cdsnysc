@@ -371,7 +371,7 @@
             <a href='/dashboard' class='btn btn-success m-1'>Member's Dashboard</a>
           @if($user->type == 2)
 
-          <a href='/supervisordashboard' class='btn btn-success m-1'>Supervisor Dashboard</a>
+          <a href='/supervisordashboard' class='btn btn-secondary m-1'>Supervisor's Dashboard</a>
           @endif
           {{-- <a class='btn btn-secondary m-1'>LGI Dashboard</a> --}}
         </div>

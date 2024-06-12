@@ -22,10 +22,10 @@
                         <div class="card-body">
                             <div class='row'>
                                 <div class='col-md-4'>
-                                    <h5 class="card-title">All Projects</h5>
+                                    <h5 class="card-title">All Payments</h5>
                                 </div>
                                 <div class='col-md-8'>
-                                    <a href='/createproject' class='btn btn-success'>Create New Project</a>
+                                    <a href='/addpayment' class='btn btn-success'>Create New Payment</a>
                                 </div>
                             </div>
 
@@ -33,32 +33,25 @@
                                 <thead>
                                     <tr>
 
-                                        <th scope="col">Image</th>
+                                       
                                         <th scope="col">Details</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($projects as $project)
+                                    @foreach($payments as $payment)
                                     <tr>
 
-                                        <td>
-                                            <img src='{{ asset("project_display_image/".$project->image) }}'
-                                                height='100px' width='100px' />
-                                        </td>
-                                        <td><b>{{ $project->title }} (@if($project->status == 1)<a
+                                       
+                                        <td><b>{{ $payment->title }} (@if($payment->status == 1)<a
                                                     class=' text-success'>Active</a>@else<a class='text-secondary'>Not
-                                                    active</a> @endif)</b><br>{!! Str::limit($project->description,100)
-                                            !!}<br><a href='/cdsproject/{{ $project->id }}'>View more</a></td>
+                                                    active</a> @endif)</b><br>{!! Str::limit($payment->description,100)
+                                            !!}</td>
                                         <td>
-                                            <a href='/editproject/{{ $project->id }}' class="btn btn-primary">Edit</a>
-                                            <a href='/addprojectimages/{{ $project->id }}' class="btn btn-success">Add
-                                                Images</a>
-                                            <a onclick='return confirm("Are you sure you want to change the status of this project?")'
-                                                href='/changeprojectstatus/{{ $project->id }}'
-                                                class="btn btn-warning">Change Status</a>
-                                            <a onclick='return confirm("Are you sure you want to delete this project?")'
-                                                href='/deleteproject/{{ $project->id }}'
+                                            <a href='/viewtransactions/{{ $payment->id }}' class="btn btn-primary">View Transactions</a>
+                                            
+                                            <a onclick='return confirm("Are you sure you want to delete this payment?")'
+                                                href='/deletepayment/{{ $payment->id }}'
                                                 class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>

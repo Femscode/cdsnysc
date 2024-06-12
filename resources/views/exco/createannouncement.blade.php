@@ -1,4 +1,7 @@
 @extends('exco.master')
+@section('header')
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+@endsection
 @section('content')
 
 
@@ -28,8 +31,8 @@
                         <div class="col-lg-9 col-xl-6">
                             <div class="input-group input-group-lg input-group-solid">
                                
-                                <input type="text" name='title' class="form-control form-control-lg form-control-solid"
-                                    placeholder="Title" />
+                                <input type="text" name='title' class="form-control form-control-sm form-control-solid"
+                                    placeholder="Input Title/Subject Of The Announcement" />
                             </div>
 
                         </div>
@@ -38,7 +41,14 @@
                     <div class="form-group row mb-4">
                         <label class="col-xl-3 col-lg-3 col-form-label">Details</label>
                         <div class="col-lg-9 col-xl-6">
-                            <textarea type='text' class='form-control' name='description'></textarea>
+                              
+                            <div id="editor-container">
+                                <div id="editor"></div>
+                                
+                            </div>
+                            
+                                <input type='hidden' name='description' id='description'/>
+                            {{-- <textarea type='text' class='form-control' name='description'></textarea> --}}
                         </div>
                     </div>
 
@@ -107,6 +117,8 @@
     </div>
 @endsection
 @section('script')
+
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
     $(document).ready(function() {
         $.ajaxSetup({
@@ -114,6 +126,16 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        var quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+
+  $("#editor").on('input', function() {
+    var content = quill.root.innerHTML;
+    $("#description").val(content)
+    console.log(content);
+  })
+
         @if (session('message'))
         Swal.fire('Success!',"{{ session('message') }}",'success');
     @endif

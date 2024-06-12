@@ -1,4 +1,7 @@
 @extends('exco.master')
+@section('header')
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+@endsection
 @section('content')
 
 
@@ -49,12 +52,16 @@
                     <div class="col-lg-9 col-xl-6">
                         <div class="input-group input-group-lg input-group-solid">
 
-                            <textarea name='description' type="text"
-                                class="form-control form-control-lg form-control-solid"
-                                placeholder="Enter Project Description">{{ $project->description}}</textarea>
-                        </div>
+                            <div id="editor-container">
+                                <div id="editor">{!! $project->description !!}</div>
+                                
+                            </div>
+                            <input id='description' value='{{ $project->description }}' name='description' type="hidden"
+                            />
+                         </div>
                     </div>
                 </div>
+                
                 <div class="form-group row mb-4">
                     <label class="col-xl-3 col-lg-3 col-form-label">Type</label>
                     <div class="col-lg-9 col-xl-6">
@@ -78,13 +85,39 @@
                         <select required type="number" name='year'
                             class="form-control form-control-lg form-control-solid">
                             <option value='{{ $project->year}}'>{{ $project->year}}</option>
-                            <option value='2024'>2024</option>
-                            <option value='2025'>2025</option>
-                            <option value='2026'>2026</option>
-                            <option value='2027'>2027</option>
-                            <option value='2028'>2028</option>
-                            <option value='2029'>2029</option>
+                            <option value='1999'>1999</option>
+                            <option value='2000'>2000</option>
+                            <option value='2001'>2001</option>
+                            <option value='2002'>2002</option>
+                            <option value='2003'>2003</option>
+                            <option value='2004'>2004</option>
+                            <option value='2005'>2005</option>
+                            <option value='2006'>2006</option>
+                            <option value='2007'>2007</option>
+                            <option value='2008'>2008</option>
+                            <option value='2009'>2009</option>
+                            <option value='2010'>2010</option>
+                            <option value='2011'>2011</option>
+                            <option value='2012'>2012</option>
+                            <option value='2013'>2013</option>
+                            <option value='2014'>2014</option>
+                            <option value='2015'>2015</option>
+                            <option value='2016'>2016</option>
+                            <option value='2017'>2017</option>
+                            <option value='2018'>2018</option>
+                            <option value='2019'>2019</option>
+                            <option value='2020'>2020</option>
+                            <option value='2021'>2021</option>
+                            <option value='2022'>2022</option>
+                            <option value='2023'>2023</option>
+                            <option value='2024'>2024</option>                
+                            <option value='2025'>2025</option>     
+                            <option value='2026'>2026</option>     
+                            <option value='2027'>2027</option>     
+                            <option value='2028'>2028</option>     
+                            <option value='2029'>2029</option>     
                             <option value='2030'>2030</option>
+                            
                         </select>
                     </div>
                     <div class="col">
@@ -157,6 +190,8 @@
 </div>
 @endsection
 @section('script')
+
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
     $(document).ready(function() {
         $.ajaxSetup({
@@ -164,6 +199,15 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        var quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+
+  $("#editor").on('input', function() {
+    var content = quill.root.innerHTML;
+    $("#description").val(content)
+    console.log(content);
+  })
         @if (session('message'))
         Swal.fire('Success!',"{{ session('message') }}",'success');
     @endif

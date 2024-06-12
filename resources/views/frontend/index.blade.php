@@ -261,7 +261,7 @@
               <!-- Text -->
 
               <h1 class="display-4 mb-md-5 mb-3 pb-3">
-                NYSC <span class="text-gradient-primary"> Community Development Service.</span>
+                NYSC - <span class="text-gradient-primary"> Community Development Service.</span>
 
               </h1>
               <div class="d-md-flex align-items-md-start">

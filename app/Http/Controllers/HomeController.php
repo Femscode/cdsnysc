@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Bank;
 use App\Models\User;
+use App\Models\Payment;
 use App\Models\Payroll;
 use App\Models\Waybill;
 use App\Models\Activity;
@@ -151,9 +152,12 @@ class HomeController extends Controller
         // $data['banks'] = Bank::all();
 
         $data['cdsgroup'] = CdsGroup::find($user->cdsgroup);
+        $data['payments'] = Payment::where('cdsgroup', $user->cdsgroup)
+        ->where('lga', $user->lga)->where('state', $user->state)                
+        ->latest()->get();
       
         $data['announcements'] = Notification::where('cdsgroup', $user->cdsgroup)
-            ->where('lga', $user->lga)->where('state', $user->state)->latest()->get();
+            ->where('lga', $user->lga)->where('state', $user->state)->latest()->take(5)->get();
         $data['transactions'] = Transaction::where('user_id', $user->id)->get();
         // $data['withdrawals'] = Withdrawal::where('user_id',$user->id)->get();
         //    dd($data);

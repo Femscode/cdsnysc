@@ -45,6 +45,14 @@ class User extends Authenticatable
     
         return $this->belongsTo(CdsGroup::class,'cdsgroup','id');
     }
+
+    public function paymentstatus($paymentId,$userId) {
+        $payment = Paid::where('payment_id',$paymentId)->where('user_id',$userId)->first();
+        if($payment !== null) {
+            return true;
+        }
+        return false;
+    }
     /**
      * The attributes that should be cast to native types.
      *

@@ -66,7 +66,7 @@
                                 <div class="ps-3">
                                     <h6>{{ number_format(count($announcements)) }}</h6>
                                     <a href='/createannouncement' class="text-success small pt-1 fw-bold">Create →
-                                        </a>
+                                        </a><br>
                                     <a href='/exconotifications' class="text-success small pt-1 fw-bold">View →
                                         </a>
 
@@ -131,14 +131,12 @@
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-table"></i>
+                                    <i class="bi bi-award"></i>
                                 </div>
                                 <div class="ps-3">
                                     <h6>{{ number_format(count($transactions)) }}</h6>
-                                    <a href='#' class="text-success small pt-1 fw-bold">Add
-                                        Certificate</a>
-                                    <a href='#' class="text-success small pt-1 fw-bold">View
-                                        Certificate→</a>
+                                    <a href='#' class="text-success small pt-1 fw-bold">Add Certificate→</a>
+                                    <a href='#' class="text-success small pt-1 fw-bold">View Certificate→</a>
 
                                 </div>
                             </div>

@@ -15,7 +15,14 @@
                
 
                 <div class="card-body">
-                    <h5 class="card-title">CDS Group Updates</h5>
+                    <div class='row'>
+                        <div class='col-md-4'>
+                            <h5 class="card-title">CDS Group Updates</h5>
+                        </div>
+                        <div class='col-md-8'>
+                            <a href='/createannouncement' class='btn btn-success'>Create Announcements</a>
+                        </div>
+                    </div>
 
                     <div class="activity">
 
@@ -28,7 +35,7 @@
                             </div>
                             <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
                             <div class="activity-content">
-                               <a href="#" class="fw-bold text-dark">{{ $act->title }}</a><br>{{ $act->description }}
+                               <a href="#" class="fw-bold text-dark">{{ $act->title }}</a><br>{!! $act->description !!}
                               <br> 
                               <span style='color:red'>{{ \Carbon\Carbon::parse($act->created_at)->diffForHumans() }}</span>
                             </div>

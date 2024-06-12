@@ -12,8 +12,7 @@
 
   <!-- SEO Meta Tags -->
   <meta name="description" content="NYSC - Community Development Service">
-  <meta name="keywords"
-    content="Community Development Services">
+  <meta name="keywords" content="Community Development Services">
   <meta name="author" content="NYSC CDS">
 
   <!-- Viewport -->
@@ -179,7 +178,7 @@
 
     <!-- Navbar -->
     <!-- Remove "fixed-top" class to make navigation bar scrollable with the page -->
-     <header class="header navbar navbar-expand-lg position-absolute navbar-sticky">
+    <header class="header navbar navbar-expand-lg position-absolute navbar-sticky">
       <div class="container px-3">
         <a href="#" class="navbar-brand pe-3">
           <img src="assets/img/nyscbiglogo.png" width="400" alt="NYSC">
@@ -282,52 +281,79 @@
                 <div class="position-relative mb-4">
                   <label for="email" class="form-label fs-base">Serving State</label>
                   <select name='state' class="form-control form-control-lg" required>
-                    <option value='Plateau State'>Plateau State</option>      
-                  </select>          
-                  
+                    <option value='Plateau State'>Plateau State</option>
+                  </select>
+
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="position-relative mb-4">
                   <label for="email" class="form-label fs-base">Local Goverment</label>
                   <select name='lga' class="form-control form-control-lg" required>
-                    <option value='Jos South'>Jos South</option>                
-                    <option value='Jos North'>Jos North</option>     
-                  </select>           
-                  
+                    <option value='Jos South'>Jos South</option>
+                    <option value='Jos North'>Jos North</option>
+                  </select>
+
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="position-relative mb-4">
                   <label for="email" class="form-label fs-base">State Code</label>
-                  <input type="text" id="phone" placeholder='PL/23B/000' name='statecode' class="form-control form-control-lg" required>
-                  
+                  <input type="text" id="phone" placeholder='PL/23B/000' name='statecode'
+                    class="form-control form-control-lg" required>
+
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="position-relative mb-4">
                   <label for="email" class="form-label fs-base">Year</label>
                   <select name='year' class="form-control form-control-lg" required>
-                    <option value='2024'>2024</option>                
-                    <option value='2025'>2025</option>     
-                    <option value='2026'>2026</option>     
-                    <option value='2027'>2027</option>     
-                    <option value='2028'>2028</option>     
-                    <option value='2029'>2029</option>     
-                    <option value='2030'>2030</option>     
-                  </select>           
-                  
+                    <option value='1999'>1999</option>
+                    <option value='2000'>2000</option>
+                    <option value='2001'>2001</option>
+                    <option value='2002'>2002</option>
+                    <option value='2003'>2003</option>
+                    <option value='2004'>2004</option>
+                    <option value='2005'>2005</option>
+                    <option value='2006'>2006</option>
+                    <option value='2007'>2007</option>
+                    <option value='2008'>2008</option>
+                    <option value='2009'>2009</option>
+                    <option value='2010'>2010</option>
+                    <option value='2011'>2011</option>
+                    <option value='2012'>2012</option>
+                    <option value='2013'>2013</option>
+                    <option value='2014'>2014</option>
+                    <option value='2015'>2015</option>
+                    <option value='2016'>2016</option>
+                    <option value='2017'>2017</option>
+                    <option value='2018'>2018</option>
+                    <option value='2019'>2019</option>
+                    <option value='2020'>2020</option>
+                    <option value='2021'>2021</option>
+                    <option value='2022'>2022</option>
+                    <option value='2023'>2023</option>
+                    <option value='2024'>2024</option>
+                    <option value='2025'>2025</option>
+                    <option value='2026'>2026</option>
+                    <option value='2027'>2027</option>
+                    <option value='2028'>2028</option>
+                    <option value='2029'>2029</option>
+                    <option value='2030'>2030</option>
+
+                  </select>
+
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="position-relative mb-4">
                   <label for="email" class="form-label fs-base">Batch</label>
                   <select name='batch' class="form-control form-control-lg" required>
-                    <option value='Batch A'>Batch A</option>                
-                    <option value='Batch B'>Batch B</option>     
-                    <option value='Batch C'>Batch C</option>     
-                  </select>           
-                  
+                    <option value='Batch A'>Batch A</option>
+                    <option value='Batch B'>Batch B</option>
+                    <option value='Batch C'>Batch C</option>
+                  </select>
+
                 </div>
               </div>
               <div class="col-sm-6">
@@ -336,10 +362,10 @@
                   <select name='cdsgroup' class="form-control form-control-lg" required>
                     @foreach(\App\Models\CdsGroup::all() as $cds)
                     <option value='{{ $cds->id }}'>{{ $cds->name }}</option>
-                  
+
                     @endforeach
                   </select>
-                  
+
                 </div>
               </div>
               <div class="col-6 mb-4">
@@ -356,7 +382,8 @@
               <div class="col-6 mb-4">
                 <label for="password-confirm" class="form-label fs-base">Confirm password</label>
                 <div class="password-toggle">
-                  <input name="password_confirmation" type="password" id="password-confirm" class="form-control form-control-lg" required>
+                  <input name="password_confirmation" type="password" id="password-confirm"
+                    class="form-control form-control-lg" required>
                   <label class="password-toggle-btn" aria-label="Show/hide password">
                     <input class="password-toggle-check" type="checkbox">
                     <span class="password-toggle-indicator"></span>
@@ -377,8 +404,8 @@
           <hr class="my-4">
           {{-- <h6 class="text-center mb-4">Or sign up with your social network</h6> --}}
           <p class="text-center text-xl-start pb-3 mb-3">Already have an account? <a href="/login">Sign in
-            here.</a></p>
-     
+              here.</a></p>
+
           {{-- <div class="row row-cols-1 row-cols-sm-2">
             <div class="col mb-3">
               <a href="#" class="btn btn-icon btn-secondary btn-google btn-lg w-100">
@@ -398,7 +425,7 @@
           <p class="nav d-block fs-xs text-center text-xl-start pb-2 mb-0">
             &copy; All rights reserved.
             <a class="nav-link d-inline-block p-0" href="/" target="_blank" rel="noopener">SECUREWAYBILL</a>
-        
+
           </p>
         </div>
       </div>
