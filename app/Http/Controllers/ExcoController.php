@@ -312,7 +312,7 @@ class ExcoController extends Controller
         // dd($request->all());
         $this->validate($request, [
             "title" => "required",
-            "description" => "required",
+            // "description" => "required",
             "amount" => "required",
             "batch" => "required",
             "bank" => "required",
@@ -327,7 +327,7 @@ class ExcoController extends Controller
         $payment = Payment::create([
             'userId' => $user->id,
             'title' => $request->title,
-            'description' => $request->description,
+            'description' => '$request->description',
             'batch' => $request->batch,
             'amount' => $request->amount,
             'deadline' => $request->deadline,
@@ -362,12 +362,12 @@ class ExcoController extends Controller
                 $email = $user->email;
                 $title = $request->title;
                 $cdsgroup = $user->cdsgroup;
-                $description = $request->description;
+                // $description = $request->description;
                 $accountname = $request->accountname;
                 $bank = $request->bank;
                 $accountno = $request->accountno;
                 $amount = $request->amount;
-                $data = array('accountname' => $accountname,'bank'=>$bank,'accountno' => $accountno,'amount' => $amount, 'name' => $user->name, 'description' => $description, 'email' => $email, 'cdsgroup' => $cdsgroup, 'title' => $title);
+                $data = array('accountname' => $accountname,'bank'=>$bank,'accountno' => $accountno,'amount' => $amount, 'name' => $user->name, 'email' => $email, 'cdsgroup' => $cdsgroup, 'title' => $title);
                
                 Mail::send('mail.cdspayment', $data, function ($message) use ($email, $cdsgroup) {
                     $message->to($email)->subject('Urgent Payment Alert ');

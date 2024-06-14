@@ -38,7 +38,7 @@
                                     <li>Amount To Be Paid : <b>NGN{{ $amount }}</b></li>
                                    
                                 </ul>
-                                <p>{{ $description }}</p>
+                              
                             </div>
 
                         </div>
