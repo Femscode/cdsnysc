@@ -324,7 +324,7 @@ class ExcoController extends Controller
        
         $user = Auth::user();
 
-        $project = Payment::create([
+        $payment = Payment::create([
             'userId' => $user->id,
             'title' => $request->title,
             'description' => $request->description,
@@ -341,6 +341,7 @@ class ExcoController extends Controller
             'lga' => $user->lga,
 
         ]);
+        
         try {
             if($request->batch == "All Batch") {
                 $cdsmembers = User::where('cdsgroup', $user->cdsgroup)
@@ -355,6 +356,7 @@ class ExcoController extends Controller
            
 
             }
+            dd($cdsmembers);
             foreach ($cdsmembers as $user) {
                 $email = $user->email;
                 $title = $request->title;
