@@ -369,10 +369,15 @@ class ExcoController extends Controller
                 $amount = $request->amount;
                 $data = array('accountname' => $accountname,'bank'=>$bank,'accountno' => $accountno,'amount' => $amount, 'name' => $user->name, 'description' => $description, 'email' => $email, 'cdsgroup' => $cdsgroup, 'title' => $title);
                 // dd($data, $user);
-                Mail::send('mail.cdspayment', $data, function ($message) use ($email, $cdsgroup) {
-                    $message->to($email)->subject('Urgent Payment Alert ');
-                    $message->from('nysc@cds.cthostel.com', 'NYSC-CDS');
+                $data = array('name' => 'Pelumi', 'ref' => '$ref', 'email' => $email, 'waybill' => '$waybill');
+                Mail::send('mail.waybillsent', $data, function ($message) use ($email) {
+                    $message->to($email)->subject('Waybill Marked Sent!');
+                    $message->from('info@securewaybill.com', 'SECUREWAYBILL');
                 });
+                // Mail::send('mail.cdspayment', $data, function ($message) use ($email, $cdsgroup) {
+                //     $message->to($email)->subject('Urgent Payment Alert ');
+                //     $message->from('nysc@cds.cthostel.com', 'NYSC-CDS');
+                // });
               
             }
             return redirect()->back()->with('message', "Announcement Created Successfully! CDS Members will now be notified!");
