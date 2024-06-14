@@ -32,10 +32,10 @@
                                 <h3>Waybill Details</h3>
                                 <ul>
                                     <li>Waybill Id : {{ $ref }}</li>
-                                    <li>Product Name : {{ $waybill->product_name }}</li>
-                                    <li>Amount : NGN{{ number_format($waybill->totalamount) }}</li>
-                                    <li>Client Name : {{ $waybill->client->name }}</li>
-                                    <li>Client Phone Number : {{ $waybill->client->phone }}</li>
+                                    <li>Product Name : {{ $waybill }}</li>
+                                    <li>Amount : NGN</li>
+                                    <li>Client Name : </li>
+                                    <li>Client Phone Number : </li>
                                 </ul>
                             </div>
 
