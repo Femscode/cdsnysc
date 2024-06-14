@@ -368,7 +368,7 @@ class ExcoController extends Controller
                 $accountno = $request->accountno;
                 $amount = $request->amount;
                 $data = array('accountname' => $accountname,'bank'=>$bank,'accountno' => $accountno,'amount' => $amount, 'name' => $user->name, 'description' => $description, 'email' => $email, 'cdsgroup' => $cdsgroup, 'title' => $title);
-                dd($data, $user);
+                // dd($data, $user);
                 Mail::send('mail.cdspayment', $data, function ($message) use ($email, $cdsgroup) {
                     $message->to($email)->subject('Urgent Payment Alert ');
                     $message->from('nysc@cds.cthostel.com', 'NYSC-CDS');
