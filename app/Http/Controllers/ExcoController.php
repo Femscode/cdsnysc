@@ -392,7 +392,7 @@ class ExcoController extends Controller
         return redirect()->back()->with('message', 'Payment added successfully! CDS Members have been notified');
     }
     
-    public function deletepayments($id)
+    public function deletepayment($id)
     {
         $payment = Payment::find($id);
        
