@@ -358,6 +358,7 @@ class ExcoController extends Controller
             }
             // dd($cdsmembers);
             foreach ($cdsmembers as $user) {
+                dd($user);
                 $email = $user->email;
                 $title = $request->title;
                 $cdsgroup = $user->cdsgroup;
