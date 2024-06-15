@@ -367,7 +367,8 @@ class ExcoController extends Controller
                 $bank = $request->bank;
                 $accountno = $request->accountno;
                 $amount = $request->amount;
-                $data = array('accountname' => $accountname,'bank'=>$bank,'accountno' => $accountno,'amount' => $amount, 'name' => $user->name, 'description' => $description, 'email' => $email, 'cdsgroup' => $cdsgroup, 'title' => $title);
+                $rcdsgroup = Cdsgroup::find($cdsgroup);
+                $data = array('accountname' => $accountname,'bank'=>$bank,'accountno' => $accountno,'amount' => $amount, 'name' => $user->name, 'description' => $description, 'email' => $email, 'cdsgroup' => $rcdsgroup->name, 'title' => $title);
               
                 Mail::to($member->email)->queue(new \App\Mail\CdspaymentMail($data));
    
