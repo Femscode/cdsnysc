@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <!--begin::Form Group-->
-                {{-- <div class="form-group row mb-4">
+                <div class="form-group row mb-4">
                     <label class="col-xl-3 col-lg-3 col-form-label">Description</label>
                     <div class="col-lg-9 col-xl-6">
                         <div class="input-group input-group-lg input-group-solid">
@@ -67,7 +67,7 @@
                             <input type='hidden' name='description' id='description' />
                         </div>
                     </div>
-                </div> --}}
+                </div>
                 <br><br>
                 <div class="form-group row mb-4">
                     <label class="col-xl-3 col-lg-3 col-form-label">More Infos</label>
