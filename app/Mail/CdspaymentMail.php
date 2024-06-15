@@ -31,7 +31,7 @@ class CdspaymentMail extends Mailable
     public function build()
     {
         return $this->view('mail.cdspayment')
-        ->with('data', $this->data)
+        ->with($this->data)
         ->subject('Urgent Payment Alert')
         ->from('nysc@corperscds.com', 'CORPERS-CDS');
 
