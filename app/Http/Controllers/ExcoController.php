@@ -366,11 +366,12 @@ class ExcoController extends Controller
                 $accountno = $request->accountno;
                 $amount = $request->amount;
                 $data = array('accountname' => $accountname,'bank'=>$bank,'accountno' => $accountno,'amount' => $amount, 'name' => $user->name, 'description' => $description, 'email' => $email, 'cdsgroup' => $cdsgroup, 'title' => $title);
-               dd($data,$email);
-                Mail::send('mail.cdspayment', $data, function ($message) use ($email) {
-                    $message->to($email)->subject('Urgent Payment Alert ');
-                    $message->from('nysc@corperscds.com', 'CORPERS-CDS');
-                });
+            //    dd($data,$email);
+               $mail = Mail::send('mail.cdspayment', $data, function ($message) use ($email) {
+                   $message->to($email)->subject('Urgent Payment Alert ');
+                   $message->from('nysc@corperscds.com', 'CORPERS-CDS');
+                   });
+                dd($data,$email,$mail);
             // dd($cdsmembers);
             foreach ($cdsmembers as $user) {
               
