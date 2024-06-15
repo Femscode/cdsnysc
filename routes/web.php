@@ -6,6 +6,7 @@ use App\Models\Cable;
 use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExcoController;
 use App\Http\Controllers\HomeController;
@@ -28,6 +29,23 @@ Route::get('/asset-location', function () {
     $publicPath = public_path();
 
     return $publicPath;
+});
+
+Route::get('/testemail', function() {
+    // Define the email details
+    $toEmail = 'fasanyafemi@gmail.com';
+    $subject = 'Test Email';
+    $messageBody = 'Hello World';
+
+    // Send the email
+    Mail::raw($messageBody, function ($message) use ($toEmail, $subject) {
+        $message->to($toEmail)
+                ->subject($subject)
+                ->from('nysc@corperscds.com', 'CORPERS-CDS');
+    });
+
+    // Return a response
+    return 'Email sent successfully!';
 });
 // Route::get('/runuid', function () {
 //    $tranx = Transaction::all();
@@ -62,13 +80,13 @@ Route::any('/resend_sms/{id}', [BulkSMSController::class, 'resendSMS'])->name('r
 
 //the subdomain website routes
 
-Route::middleware(['supervisor'])->group(function () {
+Route::middleware(['supervisor','exco','auth'])->group(function () {
     Route::get('/supervisordashboard', [SupervisorController::class, 'dashboard'])->name('supervisordashboard');
     Route::get('/makeexco/{id}', [SupervisorController::class, 'makeexco'])->name('makeexco');
     Route::get('/viewexcos', [SupervisorController::class, 'viewexcos'])->name('viewexcos');
 });
 
-Route::middleware(['exco'])->group(function () {
+Route::middleware(['exco','auth'])->group(function () {
     Route::get('/excodashboard', [ExcoController::class, 'dashboard'])->name('excodashboard');
     Route::get('/createannouncement', [ExcoController::class, 'createannouncement'])->name('createannouncement');
     Route::post('/saveannouncement', [ExcoController::class, 'saveannouncement'])->name('saveannouncement');
