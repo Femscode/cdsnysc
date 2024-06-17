@@ -43,7 +43,7 @@ class User extends Authenticatable
     public function cdsname()
     {
     
-        return $this->belongsTo(CdsGroup::class,'cdsgroup','id');
+        return $this->belongsTo(CdsGroup::class,'cdsgroup','uuid');
     }
 
     public function paymentstatus($paymentId,$userId) {
@@ -60,6 +60,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'scdsgroup' => 'array'
     ];
   
 }

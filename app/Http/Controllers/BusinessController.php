@@ -134,7 +134,7 @@ class BusinessController extends Controller
             ->whereDate('created_at', $currentDate)
             ->latest()
             ->get();
-
+      
         return view('business_backend.index', $data);
     }
 

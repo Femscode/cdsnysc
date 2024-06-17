@@ -92,7 +92,7 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-            ]
+            
 
 
 
@@ -216,7 +216,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="/excodashboard">
+        <a class="nav-link " href="/dashboard">
           <i class="bi bi-grid"></i>
           <span>Exco Dashboard</span>
         </a>
@@ -363,7 +363,9 @@
     <div class="pagetitle">
       <div class='d-flex'>
         <div class='col-md-6'>
-          <h1>Hi, Exco {{ $user->name }}!</h1>
+          <h1>
+           {{ $cdsgroup->name ?? "" }}
+          </h1>
         </div>
         <div class='col-md-6'>
          
@@ -375,21 +377,7 @@
           {{-- <a class='btn btn-secondary m-1'>LGI Dashboard</a> --}}
         </div>
       </div>
-      <nav>
-        <span class="badge bg-warning text-dark">
-
-          {{-- <i class="bi-exclamation-triangle-fill me-1"></i> --}}
-          Your NYSC-CDS ID:
-        </span>
-        <div class="input-group input-group-merge">
-          <input id='refContent' readonly type="text" id="iconExample" class="form-control"
-            value="{{ $user->statecode }}">
-
-          <a id='refCode' class="js-clipboard input-group-append input-group-text" href="javascript:;">
-            <i id="iconExampleLinkIcon" class="bi-clipboard"></i>
-          </a>
-        </div>
-      </nav>
+      
     </div><!-- End Page Title -->
     @yield('content')
 

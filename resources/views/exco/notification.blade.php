@@ -19,8 +19,8 @@
                         <div class='col-md-4'>
                             <h5 class="card-title">CDS Group Updates</h5>
                         </div>
-                        <div class='col-md-8'>
-                            <a href='/createannouncement' class='btn btn-success'>Create Announcements</a>
+                        <div class='col-md-8 d-flex justify-content-end'>
+                            <a href='/createannouncement/{{ $cdsgroup->uuid }}' class='btn btn-success'>Create Announcements</a>
                         </div>
                     </div>
 

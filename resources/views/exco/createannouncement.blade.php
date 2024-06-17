@@ -15,10 +15,11 @@
                         <div class='col-md-4'>
                             <h5 class="card-title">Create Announcements</h5>
                         </div>
-                        <div class='col-md-8'>
-                            <a href='/exconotifications' class='btn btn-success'>View Announcements</a>
+                        <div class='col-md-8 d-flex justify-content-end'>
+                            <a href='/exconotifications/{{ $cdsgroup->uuid }}' class='btn btn-success'>View Announcements</a>
                         </div>
                     </div>
+                    
                     
                 </div>
                 <!--end::Header-->
@@ -33,6 +34,7 @@
                                
                                 <input type="text" name='title' class="form-control form-control-sm form-control-solid"
                                     placeholder="Input Title/Subject Of The Announcement" />
+                                    <input type='hidden' name='cdsgroup' value='{{ $cdsgroup->uuid }}'/>
                             </div>
 
                         </div>

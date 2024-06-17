@@ -240,8 +240,8 @@
       <!-- Sign up form -->
       <div class="container d-flex flex-wrap justify-content-center justify-content-xl-start h-100 pt-5">
         <div class="w-100 align-self-end pt-1 pt-md-4 pb-4" style="max-width: 526px;">
-          <h1 class="text-center text-xl-start">Create Account</h1>
-          <form class="needs-validation" method='post' action='{{ route("register") }}'>@csrf
+          <h1 class="text-center text-xl-start">CDS Supervisor Registration</h1>
+          <form class="needs-validation" method='post' action='{{ route("registerSupervisor") }}'>@csrf
             <div class="row">
               @if($errors->any())
               <div class="alert alert-danger">
@@ -279,10 +279,10 @@
               </div>
               <div class="col-sm-6">
                 <div class="position-relative mb-4">
-                  <label for="email" class="form-label fs-base">Serving State</label>
+                  <label for="email" class="form-label fs-base">Supervising State</label>
                 
 
-                  <select id="state" name='state'  class="form-control form-control-lg" required>
+                  <select id="state" name='state' class="form-control form-control-lg" required>
                     <option value="">--Select State--</option>
                     <option value="Abia">Abia</option>
                     <option value="Adamawa">Adamawa</option>
@@ -335,75 +335,20 @@
 
                 </div>
               </div>
-              <div class="col-sm-6">
+             
+             
+            
+              <div class="col-sm-12">
                 <div class="position-relative mb-4">
-                  <label for="email" class="form-label fs-base">State Code</label>
-                  <input type="text" id="phone" placeholder='PL/23B/000' name='statecode'
-                    class="form-control form-control-lg" required>
-
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="position-relative mb-4">
-                  <label for="email" class="form-label fs-base">Year</label>
-                  <select name='year' class="form-control form-control-lg" required>
-                    <option value='1999'>1999</option>
-                    <option value='2000'>2000</option>
-                    <option value='2001'>2001</option>
-                    <option value='2002'>2002</option>
-                    <option value='2003'>2003</option>
-                    <option value='2004'>2004</option>
-                    <option value='2005'>2005</option>
-                    <option value='2006'>2006</option>
-                    <option value='2007'>2007</option>
-                    <option value='2008'>2008</option>
-                    <option value='2009'>2009</option>
-                    <option value='2010'>2010</option>
-                    <option value='2011'>2011</option>
-                    <option value='2012'>2012</option>
-                    <option value='2013'>2013</option>
-                    <option value='2014'>2014</option>
-                    <option value='2015'>2015</option>
-                    <option value='2016'>2016</option>
-                    <option value='2017'>2017</option>
-                    <option value='2018'>2018</option>
-                    <option value='2019'>2019</option>
-                    <option value='2020'>2020</option>
-                    <option value='2021'>2021</option>
-                    <option value='2022'>2022</option>
-                    <option value='2023'>2023</option>
-                    <option value='2024'>2024</option>
-                    <option value='2025'>2025</option>
-                    <option value='2026'>2026</option>
-                    <option value='2027'>2027</option>
-                    <option value='2028'>2028</option>
-                    <option value='2029'>2029</option>
-                    <option value='2030'>2030</option>
-
-                  </select>
-
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="position-relative mb-4">
-                  <label for="email" class="form-label fs-base">Batch</label>
-                  <select name='batch' class="form-control form-control-lg" required>
-                    <option value='Batch A'>Batch A</option>
-                    <option value='Batch B'>Batch B</option>
-                    <option value='Batch C'>Batch C</option>
-                  </select>
-
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="position-relative mb-4">
-                  <label for="email" class="form-label fs-base">CDS Group</label>
-                  <select name='cdsgroup' class="form-control form-control-lg" required>
+                  <label for="email" class="form-label fs-base">Select CDS Group You Are Supervising</label>
+                 
                     @foreach(\App\Models\CdsGroup::all() as $cds)
-                    <option value='{{ $cds->uuid }}'>{{ $cds->name }}</option>
-
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="cdsgroup[]" id="cdsgroup{{ $cds->id }}" value="{{ $cds->id }}">
+                        <label class="form-check-label" for="cdsgroup{{ $cds->id }}">{{ $cds->name }}</label>
+                    </div>
                     @endforeach
-                  </select>
+                 
 
                 </div>
               </div>

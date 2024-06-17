@@ -7,25 +7,27 @@ use App\Models\Project;
 use App\Models\CdsGroup;
 use App\Models\Transaction;
 use App\Models\Notification;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SupervisorController extends Controller
 {
     //
-    public function dashboard()
+    public function dashboard($id)
     {
         $data['user'] = $user = Auth::user();
-        $data['corpers'] = User::where('cdsgroup', $user->cdsgroup)->get();
-        $data['excos'] = User::where('cdsgroup', $user->cdsgroup)->where('type',1)->get();
+        $data['cdsgroup'] = CdsGroup::where('uuid',$id)->firstOrFail();      
+        $data['corpers'] = User::where('cdsgroup', $id)->get();
+        $data['excos'] = User::where('cdsgroup', $id)->where('type',1)->get();
         $data['active'] = 'dashboard';
-        $data['cdsgroup'] = CdsGroup::find($user->cdsgroup);
-        $data['announcements'] = Notification::where('cdsgroup', $user->cdsgroup)
+        $data['announcements'] = Notification::where('cdsgroup', $id)
             ->where('lga', $user->lga)->where('state', $user->state)->latest()->get();
-        $data['projects'] = Project::where('cdsgroup', $user->cdsgroup)
+        $data['projects'] = Project::where('cdsgroup', $id)
             ->where('lga', $user->lga)->where('state', $user->state)->latest()->get();
 
-        $data['transactions'] = Transaction::where('user_id', $user->id)->get();
+        $data['payments'] = Payment::where('cdsgroup', $id)
+        ->where('lga', $user->lga)->where('state', $user->state)->get();
         return view('supervisor.dashboard', $data);
     }
     public function makeexco($id) {
@@ -41,15 +43,15 @@ class SupervisorController extends Controller
  
 
     }
-    public function viewexcos() {
+    public function viewexcos($id) {
         
         $data['user'] = $user = Auth::user();
-        $data['excos'] = User::where('cdsgroup', $user->cdsgroup)->where('type',1)->get();
+        $data['cdsgroup'] = CdsGroup::where('uuid',$id)->firstOrFail();
+        $data['excos'] = User::where('cdsgroup', $id)->where('type',1)->get();
         $data['active'] = 'dashboard';
-        $data['cdsgroup'] = CdsGroup::find($user->cdsgroup);
-        $data['announcements'] = Notification::where('cdsgroup', $user->cdsgroup)
+        $data['announcements'] = Notification::where('cdsgroup', $id)
             ->where('lga', $user->lga)->where('state', $user->state)->latest()->get();
-        $data['projects'] = Project::where('cdsgroup', $user->cdsgroup)
+        $data['projects'] = Project::where('cdsgroup', $id)
             ->where('lga', $user->lga)->where('state', $user->state)->latest()->get();
 
         $data['transactions'] = Transaction::where('user_id', $user->id)->get();

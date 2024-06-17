@@ -15,8 +15,8 @@
                     <div class='col-md-4'>
                         <h5 class="card-title">Add Payment</h5>
                     </div>
-                    <div class='col-md-8'>
-                        <a href='/viewpayments' class='btn btn-success'>View Payments</a>
+                    <div class='col-md-8 d-flex justify-content-end'>
+                        <a href='/viewpayments/{{ $cdsgroup->uuid }}' class='btn btn-success'>View Payments</a>
                     </div>
                 </div>
                 @if($errors->any())
@@ -47,6 +47,7 @@
                             <div class="">
                                 <input required name='title' placeholder="Reason For Payment"
                                     class="form-control form-control-lg form-control-solid" type="text" />
+                                    <input type='hidden' name='cdsgroup' value='{{ $cdsgroup->uuid }}'/>
                             </div>
                             {{--
                         </div> --}}

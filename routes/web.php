@@ -3,6 +3,7 @@
 use App\Models\Data;
 use App\Models\User;
 use App\Models\Cable;
+use App\Models\CdsGroup;
 use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Client\Request;
@@ -17,6 +18,7 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\LoginWithGoogleController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/', [BusinessController::class, 'index'])->name('homepage');
@@ -24,11 +26,24 @@ Route::get('/cdsprojects', [BusinessController::class, 'cdsprojects'])->name('cd
 Route::get('/cdsproject/{id}', [BusinessController::class, 'cdsproject'])->name('cdsproject');
 Route::post('/fetchCDSProject', [BusinessController::class, 'fetchCDSProject'])->name('fetchCDSProject');
 
+Route::view('/supervisor-registration', 'auth.registersupervisor')->name('supervisor-registration');
+Route::post('/registerSupervisor', [RegisteredUserController::class, 'registerSupervisor'])->name('registerSupervisor');
+
+
 Route::view('certificate','frontend.certificate');
 Route::get('/asset-location', function () {
     $publicPath = public_path();
 
     return $publicPath;
+});
+
+Route::get('/uuid', function () {
+    $cdsgroups = CdsGroup::all();
+    foreach($cdsgroups as $cds) {
+        $cds->uuid = Str::uuid();
+        $cds->save();
+    }
+
 });
 
 Route::get('/testemail', function() {
@@ -81,20 +96,21 @@ Route::any('/resend_sms/{id}', [BulkSMSController::class, 'resendSMS'])->name('r
 //the subdomain website routes
 
 Route::middleware(['supervisor','exco','auth'])->group(function () {
-    Route::get('/supervisordashboard', [SupervisorController::class, 'dashboard'])->name('supervisordashboard');
     Route::get('/makeexco/{id}', [SupervisorController::class, 'makeexco'])->name('makeexco');
-    Route::get('/viewexcos', [SupervisorController::class, 'viewexcos'])->name('viewexcos');
+    Route::get('/viewexcos/{id}', [SupervisorController::class, 'viewexcos'])->name('viewexcos');
+    Route::get('/dashboard/{id}', [SupervisorController::class, 'dashboard'])->name('managecds');
 });
 
 Route::middleware(['exco','auth'])->group(function () {
-    Route::get('/excodashboard', [ExcoController::class, 'dashboard'])->name('excodashboard');
-    Route::get('/createannouncement', [ExcoController::class, 'createannouncement'])->name('createannouncement');
+    // Route::get('/dashboard/{id}', [ExcoController::class, 'dashboard'])->name('managecds');
+    // Route::get('/excodashboard', [ExcoController::class, 'dashboard'])->name('excodashboard');
+    Route::get('/createannouncement/{id}', [ExcoController::class, 'createannouncement'])->name('createannouncement');
     Route::post('/saveannouncement', [ExcoController::class, 'saveannouncement'])->name('saveannouncement');
-    Route::get('/exconotifications', [ExcoController::class, 'notifications'])->name('exconotifications');
+    Route::get('/exconotifications/{id}', [ExcoController::class, 'notifications'])->name('exconotifications');
     Route::post('/saveWhatsappGroup', [ExcoController::class, 'saveWhatsappGroup'])->name('saveWhatsappGroup');
     Route::any('/deleteann/{id}', [ExcoController::class, 'deleteann'])->name('deleteann');
     
-    Route::get('/createproject', [ExcoController::class, 'createproject'])->name('createproject');
+    Route::get('/createproject/{id}', [ExcoController::class, 'createproject'])->name('createproject');
     Route::get('/editproject/{id}', [ExcoController::class, 'editproject'])->name('editproject');
     Route::get('/changeprojectstatus/{id}', [ExcoController::class, 'changeprojectstatus'])->name('changeprojectstatus');
     Route::get('/addprojectimages/{id}', [ExcoController::class, 'addprojectimages'])->name('addprojectimages');
@@ -103,11 +119,11 @@ Route::middleware(['exco','auth'])->group(function () {
     Route::post('/updateproject/', [ExcoController::class, 'updateproject'])->name('updateproject');
     Route::any('/deleteproject/{id}', [ExcoController::class, 'deleteproject'])->name('deleteproject');
     Route::post('/saveproject', [ExcoController::class, 'saveproject'])->name('saveproject');
-    Route::get('/viewprojects', [ExcoController::class, 'projects'])->name('projects');
+    Route::get('/viewprojects/{id}', [ExcoController::class, 'projects'])->name('projects');
     
-    Route::get('/addpayment', [ExcoController::class, 'addpayment'])->name('addpayment');
+    Route::get('/addpayment/{id}', [ExcoController::class, 'addpayment'])->name('addpayment');
     Route::post('/savepayment', [ExcoController::class, 'savepayment'])->name('savepayment');
-    Route::get('/viewpayments', [ExcoController::class, 'payments'])->name('payments');
+    Route::get('/viewpayments/{id}', [ExcoController::class, 'payments'])->name('payments');
     Route::any('/deletepayment/{id}', [ExcoController::class, 'deletepayment'])->name('deletepayment');
     
     Route::get('/viewtransactions/{id}', [ExcoController::class, 'viewtransactions'])->name('viewtransactions');

@@ -7,6 +7,7 @@ use App\Models\Bank;
 use App\Models\User;
 use App\Models\Payment;
 use App\Models\Payroll;
+use App\Models\Project;
 use App\Models\Waybill;
 use App\Models\Activity;
 use App\Models\CdsGroup;
@@ -151,18 +152,57 @@ class HomeController extends Controller
 
         // $data['banks'] = Bank::all();
 
-        $data['cdsgroup'] = CdsGroup::find($user->cdsgroup);
-        $data['payments'] = Payment::where('cdsgroup', $user->cdsgroup)
+        if($user->type == 1) {
+            $data['cdsgroup'] = $cdsgroup =  CdsGroup::where('uuid', $user->cdsgroup)->firstOrFail();
+            
+            $data['corpers'] = User::where('cdsgroup', $cdsgroup->uuid)->get();
+            $data['active'] = 'dashboard';
+            $data['announcements'] = Notification::where('cdsgroup', $cdsgroup->uuid)
+                ->where('lga', $user->lga)->where('state', $user->state)->latest()->get();
+            $data['projects'] = Project::where('cdsgroup', $cdsgroup->uuid)
+                ->where('lga', $user->lga)->where('state', $user->state)->latest()->get();
+    
+            $data['payments'] = Payment::where('cdsgroup', $cdsgroup->uuid)
+            ->where('lga', $user->lga)->where('state', $user->state)->get();
+            return response()->view('exco.dashboard', $data);
+        }
+        if ($user->type == 2) {
+           
+            $cdsgroups = [];
+            $cc = json_decode($user->scdsgroup, true);
+            
+            if (is_array($cc)) {
+                foreach ($cc as $id) {
+                    $group = CdsGroup::find($id);
+                    if ($group) {
+                        array_push($cdsgroups, $group);
+                    }
+                }
+            }
+          
+
+            $data['cdsgroups'] = $cdsgroups;
+           
+            
+            // Now $cdsgroups contains the found CdsGroup objects
+            // You can proceed with further processing
+            return response()->view('supervisor.index', $data);
+        }
+
+       
+        $data['cdsgroup'] = $cdsgroup = CdsGroup::where('uuid',$user->cdsgroup)->firstOrFail();
+        $data['payments'] = Payment::where('cdsgroup', $cdsgroup->uuid)
         ->where('lga', $user->lga)->where('state', $user->state)                
         ->latest()->get();
       
-        $data['announcements'] = Notification::where('cdsgroup', $user->cdsgroup)
+        $data['announcements'] = Notification::where('cdsgroup', $cdsgroup->uuid)
             ->where('lga', $user->lga)->where('state', $user->state)->latest()->take(5)->get();
         $data['transactions'] = Transaction::where('user_id', $user->id)->get();
-        // $data['withdrawals'] = Withdrawal::where('user_id',$user->id)->get();
-        //    dd($data);
-
+       
         return response()->view('dashboard.index', $data);
+
+
+
         // }
     }
     public function notifications()

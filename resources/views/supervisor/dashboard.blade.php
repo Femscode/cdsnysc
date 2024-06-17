@@ -27,7 +27,6 @@
               <br>
             <div class="row">
 
-                <!-- Sales Card -->
                 <div class="col-xxl-4 col-md-4">
                     <div class="card info-card sales-card">
 
@@ -65,9 +64,9 @@
                                 </div>
                                 <div class="ps-3">
                                     <h6>{{ number_format(count($announcements)) }}</h6>
-                                    <a href='/createannouncement' class="text-success small pt-1 fw-bold">Create →
+                                    <a href='/createannouncement/{{ $cdsgroup->uuid }}' class="text-success small pt-1 fw-bold">Create →
                                         </a><br>
-                                    <a href='/exconotifications' class="text-success small pt-1 fw-bold">View →
+                                    <a href='/exconotifications/{{ $cdsgroup->uuid }}' class="text-success small pt-1 fw-bold">View →
                                         </a>
 
                                 </div>
@@ -81,16 +80,16 @@
 
 
                         <div class="card-body">
-                            <h5 class="card-title">Member's Transactions</h5>
+                            <h5 class="card-title">Payment & Transactions</h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                     <i class="bi bi-table"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>{{ number_format(count($transactions)) }}</h6>
-                                    <a href='#' class="text-success small pt-1 fw-bold">View
-                                        transactions→</a>
+                                    <h6>{{ number_format(count($payments)) }}</h6>
+                                    <a href='/addpayment/{{ $cdsgroup->uuid }}' class="text-success small pt-1 fw-bold">Add Payment→</a><br>
+                                    <a href='/viewpayments/{{ $cdsgroup->uuid }}' class="text-success small pt-1 fw-bold">View Transactions→</a>
 
                                 </div>
                             </div>
@@ -111,10 +110,8 @@
                                 </div>
                                 <div class="ps-3">
                                     <h6>{{ number_format(count($projects)) }}</h6>
-                                    <a href='/createproject' class="text-success small pt-1 fw-bold">Add
-                                        Projects→</a><br>
-                                    <a href='/viewprojects' class="text-success small pt-1 fw-bold">View
-                                        Past Projects→</a>
+                                    <a href='/createproject/{{ $cdsgroup->uuid }}' class="text-success small pt-1 fw-bold">Add Projects→</a><br>
+                                    <a href='/viewprojects/{{ $cdsgroup->uuid }}' class="text-success small pt-1 fw-bold">View Past Projects→</a>
 
                                 </div>
                             </div>
@@ -134,8 +131,8 @@
                                     <i class="bi bi-award"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>{{ number_format(count($transactions)) }}</h6>
-                                    <a href='#' class="text-success small pt-1 fw-bold">Add Certificate→</a>
+                                    <h6>0</h6>
+                                    <a href='#' class="text-success small pt-1 fw-bold">Add Certificate→</a><br>
                                     <a href='#' class="text-success small pt-1 fw-bold">View Certificate→</a>
 
                                 </div>
@@ -144,6 +141,8 @@
 
                     </div>
                 </div><!-- End Revenue Card -->
+
+
                 <div class="col-xxl-4 col-md-4">
                     <div class="card info-card revenue-card">
 
@@ -158,7 +157,7 @@
                                 <div class="ps-3">
                                     <h6>{{ number_format(count($excos)) }}</h6>
                                   
-                                    <a href='/viewexcos' class="text-success small pt-1 fw-bold">View
+                                    <a href='/viewexcos/{{ $cdsgroup->uuid }}' class="text-success small pt-1 fw-bold">View
                                         Excos→</a>
 
                                 </div>

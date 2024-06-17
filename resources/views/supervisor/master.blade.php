@@ -364,33 +364,19 @@
     <div class="pagetitle">
       <div class='d-flex'>
         <div class='col-md-6'>
-          <h1>Hi, Exco {{ $user->name }}!</h1>
+          <h1>  {{ $cdsgroup->name ?? "" }}</h1>
         </div>
         <div class='col-md-6'>
          
             <a href='/dashboard' class='btn btn-success m-1'>Member's Dashboard</a>
           @if($user->type == 2)
 
-          <a href='/supervisordashboard' class='btn btn-secondary m-1'>Supervisor's Dashboard</a>
+          <a href='/dashboard' class='btn btn-secondary m-1'>Supervisor's Dashboard</a>
           @endif
           {{-- <a class='btn btn-secondary m-1'>LGI Dashboard</a> --}}
         </div>
       </div>
-      <nav>
-        <span class="badge bg-warning text-dark">
-
-          {{-- <i class="bi-exclamation-triangle-fill me-1"></i> --}}
-          Your NYSC-CDS ID:
-        </span>
-        <div class="input-group input-group-merge">
-          <input id='refContent' readonly type="text" id="iconExample" class="form-control"
-            value="{{ $user->statecode }}">
-
-          <a id='refCode' class="js-clipboard input-group-append input-group-text" href="javascript:;">
-            <i id="iconExampleLinkIcon" class="bi-clipboard"></i>
-          </a>
-        </div>
-      </nav>
+     
     </div><!-- End Page Title -->
     @yield('content')
 

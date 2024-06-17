@@ -15,8 +15,8 @@
                         <div class='col-md-4'>
                             <h5 class="card-title">Add CDS Project</h5>
                         </div>
-                        <div class='col-md-8'>
-                            <a href='/viewprojects' class='btn btn-success'>View Projects</a>
+                        <div class='col-md-8 d-flex justify-content-end'>
+                            <a href='/viewprojects/{{ $cdsgroup->uuid }}' class='btn btn-success'>View Projects</a>
                         </div>
                     </div>
                     @if($errors->any())
@@ -47,7 +47,8 @@
                             <div class="">
                                 <input required name='title' placeholder="Enter Project Title"
                                     class="form-control form-control-lg form-control-solid" type="text" />
-                            </div>
+                                <input type='hidden' name='cdsgroup' value='{{ $cdsgroup->uuid }}'/>
+                                </div>
                         {{-- </div> --}}
                     </div>
                 </div>

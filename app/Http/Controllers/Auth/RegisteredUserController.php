@@ -43,6 +43,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required'],
@@ -76,6 +77,50 @@ class RegisteredUserController extends Controller
             'uuid' => $uid,
             'password' => Hash::make($data['password']),
             'user_type' => 'corp-member',
+        ]);
+       
+        $user->save();
+
+
+        event(new Registered($user));
+        // $user->sendEmailVerificationNotification();
+        Auth::login($user);
+        return redirect('/dashboard');
+        return $user;
+    }
+    public function registerSupervisor(Request $request)
+    {
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required'],
+            'state' => ['required'],
+            'lga' => ['required'],           
+            'cdsgroup' => ['required'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('supervisor-registration') // Use the correct route name or URL
+                ->withErrors($validator)
+                ->withInput();
+        }
+      
+        $data = $request->all();
+        $uid = Str::uuid();
+        // dd($request->all()); $uid = Str::uuid();
+
+        $user = User::create([
+            'name' => $data['name'],           
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'state' => $data['state'],
+            'lga' => $data['lga'],
+            'scdsgroup' => $data['cdsgroup'],
+            'uuid' => $uid,
+            'password' => Hash::make($data['password']),
+            'user_type' => 'supervisor',
+            'type' => 2,
         ]);
        
         $user->save();

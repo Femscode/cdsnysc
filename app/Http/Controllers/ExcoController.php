@@ -18,7 +18,7 @@ use App\Models\ProjectAdditionalImage;
 class ExcoController extends Controller
 {
     //
-    public function dashboard()
+    public function olddashboard()
     {
         $data['user'] = $user = Auth::user();
         $data['corpers'] = User::where('cdsgroup', $user->cdsgroup)->get();
@@ -32,10 +32,27 @@ class ExcoController extends Controller
         $data['transactions'] = Transaction::where('user_id', $user->id)->get();
         return view('exco.dashboard', $data);
     }
-    public function createannouncement()
+    public function dashboard($id)
+    {
+        $data['user'] = $user = Auth::user();
+        
+        $data['cdsgroup'] = CdsGroup::where('uuid',$id)->firstOrFail();
+        $data['corpers'] = User::where('cdsgroup', $id)->get();
+        $data['active'] = 'dashboard';
+        $data['announcements'] = Notification::where('cdsgroup', $id)
+            ->where('lga', $user->lga)->where('state', $user->state)->latest()->get();
+        $data['projects'] = Project::where('cdsgroup', $id)
+            ->where('lga', $user->lga)->where('state', $user->state)->latest()->get();
+
+        $data['payments'] = Payment::where('cdsgroup', $id)
+        ->where('lga', $user->lga)->where('state', $user->state)->get();
+        return view('exco.dashboard', $data);
+    }
+    public function createannouncement($id)
     {
         $data['user'] = $user = Auth::user();
         $data['active'] = 'dashboard';
+        $data['cdsgroup'] = $cdsgroup = CdsGroup::where('uuid',$id)->firstOrFail();
         return view('exco.createannouncement', $data);
     }
     public function saveannouncement(Request $request)
@@ -55,7 +72,7 @@ class ExcoController extends Controller
             'batch' => serialize($request->batch),
             'state' => $user->state,
             'lga' => $user->lga,
-            'cdsgroup' => $user->cdsgroup,
+            'cdsgroup' => $request->cdsgroup,
         ]);
         try {
             $cdsmembers = User::where('cdsgroup', $user->cdsgroup)
@@ -86,17 +103,17 @@ class ExcoController extends Controller
         $announcement->delete();
         return redirect()->back()->with('message', "Announcement Deleted Successfully!");
     }
-    public function notifications()
+    public function notifications($id)
     {
 
         $data['user'] = $user = Auth::user();
-        $data['cdsgroup'] = CdsGroup::find($user->cdsgroup);
-
+        $data['cdsgroup'] = $cdsgroup =  CdsGroup::where('uuid',$id)->firstOrFail();
+        
 
         $data['active'] = 'notifications';
 
 
-        $data['announcements'] = Notification::where('cdsgroup', $user->cdsgroup)
+        $data['announcements'] = Notification::where('cdsgroup', $cdsgroup->uuid)
             ->where('lga', $user->lga)->where('state', $user->state)->latest()->get();
 
         return response()->view('exco.notification', $data);
@@ -113,8 +130,9 @@ class ExcoController extends Controller
         return redirect()->back()->with('message', 'CDS Whatsapp Group Updated Successfully!');
     }
 
-    public function createproject()
+    public function createproject($id)
     {
+        $data['cdsgroup'] =   CdsGroup::where('uuid', $id)->firstOrFail();
         $data['user'] = Auth::user();
         $data['active'] = 'project';
         return view('exco.createproject', $data);
@@ -157,9 +175,9 @@ class ExcoController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'batch' => $request->batch,
-            'year' => $user->year,
+            'year' => $request->year,
             'date' => $request->date,
-            'cdsgroup' => $user->cdsgroup,
+            'cdsgroup' => $request->cdsgroup,
             'state' => $user->state,
             'lga' => $user->lga,
             'type' => 'cdsproject',
@@ -259,14 +277,15 @@ class ExcoController extends Controller
     }
 
 
-    public function projects()
+    public function projects($id)
     {
 
         $data['user'] = $user = Auth::user();
 
         $data['active'] = 'dashboard';
+        $data['cdsgroup'] =   CdsGroup::where('uuid', $id)->firstOrFail();
 
-        $data['projects'] = Project::where('cdsgroup', $user->cdsgroup)
+        $data['projects'] = Project::where('cdsgroup', $id)
         ->where('lga', $user->lga)->where('state', $user->state)                
         ->latest()->get();
 
@@ -274,13 +293,14 @@ class ExcoController extends Controller
         return response()->view('exco.viewprojects', $data);
     }
 
-    public function payments()
+    public function payments($id)
     {
         $data['user'] = $user = Auth::user();
+        $data['cdsgroup'] = $cdsgroup=  CdsGroup::where('uuid', $id)->firstOrFail();
 
         $data['active'] = 'dashboard';
 
-        $data['payments'] = Payment::where('cdsgroup', $user->cdsgroup)
+        $data['payments'] = Payment::where('cdsgroup', $cdsgroup->uuid)
                 ->where('lga', $user->lga)->where('state', $user->state)                
                 ->latest()->get();
 
@@ -300,10 +320,11 @@ class ExcoController extends Controller
         $project->delete();
         return redirect()->back()->with('message', 'Project Deleted Successfully!');
     }
-    public function addpayment()
+    public function addpayment($id)
     {
         $data['user'] = Auth::user();
         $data['active'] = 'project';
+        $data['cdsgroup'] =   CdsGroup::where('uuid', $id)->firstOrFail();
         return view('exco.addpayment', $data);
     }
     
@@ -323,7 +344,8 @@ class ExcoController extends Controller
 
        
         $user = Auth::user();
-
+        $date = Date('Y');
+       
         $payment = Payment::create([
             'userId' => $user->id,
             'title' => $request->title,
@@ -335,8 +357,8 @@ class ExcoController extends Controller
             'accountname' => $request->accountname,
             'accountno' => $request->accountno,
             'adminphone' => $user->phone,
-            'year' => $user->year,
-            'cdsgroup' => $user->cdsgroup,
+            'year' => $user->year ?? $date,
+            'cdsgroup' => $request->cdsgroup,
             'state' => $user->state,
             'lga' => $user->lga,
 
@@ -370,7 +392,7 @@ class ExcoController extends Controller
                 $rcdsgroup = Cdsgroup::find($cdsgroup);
                 $data = array('accountname' => $accountname,'bank'=>$bank,'accountno' => $accountno,'amount' => $amount, 'name' => $user->name, 'description' => $description, 'email' => $email, 'cdsgroup' => $rcdsgroup->name, 'title' => $title);
               
-                Mail::to($member->email)->queue(new \App\Mail\CdspaymentMail($data));
+                // Mail::to($member->email)->queue(new \App\Mail\CdspaymentMail($data));
    
                 // Mail::queue('mail.cdspayment', $data, function ($message) use ($email) {
                 //     $message->to($email)->subject('Urgent Payment Alert');
@@ -383,7 +405,7 @@ class ExcoController extends Controller
                 // });
               
             }
-            return redirect()->back()->with('message', "Announcement Created Successfully! CDS Members will now be notified!");
+            return redirect()->back()->with('message', "Payment Created Successfully! CDS Members will now be notified!");
         } catch (\Exception $e) {
             // Handle the error
             echo 'Caught exception: ',  $e->getMessage(), "\n";
