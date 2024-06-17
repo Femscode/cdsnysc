@@ -392,7 +392,7 @@ class ExcoController extends Controller
                 $rcdsgroup = Cdsgroup::find($cdsgroup);
                 $data = array('accountname' => $accountname,'bank'=>$bank,'accountno' => $accountno,'amount' => $amount, 'name' => $user->name, 'description' => $description, 'email' => $email, 'cdsgroup' => $rcdsgroup->name, 'title' => $title);
               
-                // Mail::to($member->email)->queue(new \App\Mail\CdspaymentMail($data));
+                Mail::to($member->email)->queue(new \App\Mail\CdspaymentMail($data));
    
                 // Mail::queue('mail.cdspayment', $data, function ($message) use ($email) {
                 //     $message->to($email)->subject('Urgent Payment Alert');

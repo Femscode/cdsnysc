@@ -217,7 +217,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="/supervisordashboard">
+        <a class="nav-link " href="/dashboard">
           <i class="bi bi-grid"></i>
           <span>Supervisor Dashboard</span>
         </a>
