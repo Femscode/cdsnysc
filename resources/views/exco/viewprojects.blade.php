@@ -25,7 +25,7 @@
                                     <h5 class="card-title">All Projects</h5>
                                 </div>
                                 <div class='col-md-8'>
-                                    <a href='/createproject' class='btn btn-success'>Create New Project</a>
+                                    <a href='/createproject/{{ $cdsgroup->uuid ?? "" }}' class='btn btn-success'>Create New Project</a>
                                 </div>
                             </div>
 
