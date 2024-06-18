@@ -42,7 +42,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="/" class="logo align-items-center">
-        <img src="assets/img/nyscbiglogo.png" width="250" alt="NYSC">
+        <img src="{{ asset('assets/img/nyscbiglogo.png')}}" width="250" alt="NYSC">
         {{-- <span class="d-none d-lg-block">SWB</span> --}}
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
