@@ -43,7 +43,7 @@
                                     <tr>
 
                                         <td>
-                                            <img src='{{ asset("project_display_image/".$project->image) }}'
+                                            <img src='{{ asset("corpersfiles/public/project_display_image/".$project->image) }}'
                                                 height='100px' width='100px' />
                                         </td>
                                         <td><b>{{ $project->title }} (@if($project->status == 1)<a
