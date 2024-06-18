@@ -225,7 +225,7 @@ class ExcoController extends Controller
         $project->batch = $request->batch;
         $project->year = $request->year;
         $project->date = $request->date;
-        $project->cdsgroup = $user->cdsgroup;
+      
         $project->state = $user->state;
         $project->lga = $user->lga;
         $project->save();

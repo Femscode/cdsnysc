@@ -147,7 +147,7 @@
 
                    
                     <div class="col-lg-6 col-xl-6">
-                        <img src='{{ asset("project_display_image/".$project->image) }}' height='150px' width='150px' />
+                        <img src='{{ asset("corpersfiles/public/project_display_image/".$project->image) }}' height='150px' width='150px' />
                         <input type='file' class='form-control' name='image' accept="image/*" />
                     </div>
                 </div>
