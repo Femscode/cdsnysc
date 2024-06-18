@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>NYSC-CDS | HOME</title>
+    <title>Corper's CDS | HOME</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="NYSC - Community Development Service">
@@ -305,14 +305,14 @@
                         @foreach($projects as $project)
                         <div class="card border-0 shadow-sm overflow-hidden mb-4">
                             <div class="row g-0">
-                                <a href="#" class="col-sm-4 bg-repeat-0 bg-position-center bg-size-cover"
+                                <a href='/cdsproject/{{ $project->id }}' class="col-sm-4 bg-repeat-0 bg-position-center bg-size-cover"
                                     style="background-image: url(corpersfiles/public/project_display_image/{{ $project->image}}); min-height: 13rem;"
                                     aria-label="Cover image"></a>
                                 <div class="col-sm-8">
                                     <div class="card-body">
                                         <div class="fs-sm text-muted mb-1">{{ $project->date }} | {{ $project->state }} | {{ $project->lga }}</div>
                                         <h2 class="h4 pb-1 mb-2">
-                                            <a href="#">{{ $project->title }}</a>
+                                            <a href='/cdsproject/{{ $project->id }}'>{{ $project->title }}</a>
                                         </h2>
                                         <p class="mb-4 mb-lg-5">{!! $project->description !!}</p>
                                         <div class="d-flex">
@@ -410,14 +410,14 @@
                         </div>
                         <div class="col-xl-4 col-lg-5 pt-2 pt-lg-0">
                             <h6 class="mb-2">Contact Us</h6>
-                            <a href="mailto:email@example.com" class="fw-medium">support@NYSC-CDS.com</a>
+                            <a href="mailto:support@corperscds.com" class="fw-medium">support@corperscds.com</a>
                         </div>
                     </div>
                 </div>
             </div>
             <p class="nav d-block fs-xs text-center text-md-start pb-2 pb-lg-0 mb-0">
                 &copy; All rights reserved
-                <a class="nav-link d-inline-block p-0" href="#" target="_blank" rel="noopener">NYSC-CDS</a>
+                <a class="nav-link d-inline-block p-0" href="#" target="_blank" rel="noopener">Corper's CDS</a>
             </p>
         </div>
     </footer>

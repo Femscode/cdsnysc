@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>NYSC | CDSProject</title>
+    <title>Corper's CDS | CDSProject</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="NYSC - Community Development Service">
@@ -455,14 +455,14 @@
                         </div>
                         <div class="col-xl-4 col-lg-5 pt-2 pt-lg-0">
                             <h6 class="mb-2">Contact Us</h6>
-                            <a href="mailto:email@example.com" class="fw-medium">support@NYSC-CDS.com</a>
+                            <a href="mailto:support@corperscds.com" class="fw-medium">support@corperscds.com</a>
                         </div>
                     </div>
                 </div>
             </div>
             <p class="nav d-block fs-xs text-center text-md-start pb-2 pb-lg-0 mb-0">
                 &copy; All rights reserved
-                <a class="nav-link d-inline-block p-0" href="#" target="_blank" rel="noopener">NYSC-CDS</a>
+                <a class="nav-link d-inline-block p-0" href="#" target="_blank" rel="noopener">Corper's CDS</a>
             </p>
         </div>
     </footer>
