@@ -368,7 +368,7 @@
         </div>
         <div class='col-md-6'>
          
-            <a href='/dashboard' class='btn btn-success m-1'>Member's Dashboard</a>
+            {{-- <a href='/dashboard' class='btn btn-success m-1'>Member's Dashboard</a> --}}
           @if($user->type == 2)
 
           <a href='/dashboard' class='btn btn-secondary m-1'>Supervisor's Dashboard</a>

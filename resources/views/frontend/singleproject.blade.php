@@ -209,10 +209,10 @@
                         </ul>
                     </div>
                     <div class="offcanvas-header border-top">
-                        <a href="https://themes.getbootstrap.com/product/silicon-business-technology-template-ui-kit/"
+                        <a href="/login"
                             class="btn btn-primary w-100" target="_blank" rel="noopener">
                             <i class="bx bx-cart fs-4 lh-1 me-1"></i>
-                            &nbsp;Buy now
+                            &nbsp;Login
                         </a>
                     </div>
                 </div>
@@ -257,7 +257,7 @@
         <!-- Hero image (Parallax) -->
         <section class="jarallax" data-jarallax data-speed="0.4">
             <div class="jarallax-img"
-                style="background-image: url({{ asset('project_display_image/'. $project->image)}});"></div>
+                style="background-image: url({{ asset('corpersfiles/public/project_display_image/'. $project->image)}});"></div>
             <div class="d-none d-xxl-block" style="height: 800px;"></div>
             <div class="d-none d-lg-block d-xxl-none" style="height: 600px;"></div>
             <div class="d-none d-md-block d-lg-none" style="height: 450px;"></div>
