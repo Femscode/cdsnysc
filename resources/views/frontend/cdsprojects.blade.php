@@ -306,7 +306,7 @@
                         <div class="card border-0 shadow-sm overflow-hidden mb-4">
                             <div class="row g-0">
                                 <a href="#" class="col-sm-4 bg-repeat-0 bg-position-center bg-size-cover"
-                                    style="background-image: url(project_display_image/{{ $project->image}}); min-height: 13rem;"
+                                    style="background-image: url(corpersfiles/public/project_display_image/{{ $project->image}}); min-height: 13rem;"
                                     aria-label="Cover image"></a>
                                 <div class="col-sm-8">
                                     <div class="card-body">
@@ -318,7 +318,7 @@
                                         <div class="d-flex">
                                             <a href='/cdsproject/{{ $project->id }}' type="button"
                                                 class="btn btn-outline-primary px-3 px-lg-4 me-3">
-                                                <i class="bx bx-edit fs-xl me-xl-2"></i>
+                                                <i class="bx bx-right-arrow-circle fs-xl me-xl-2"></i>
                                                 <span class="d-none d-xl-inline">View Project</span>
                                             </a>
                                             <a type="button" class="btn btn-outline-secondary px-3 px-lg-4 me-3">

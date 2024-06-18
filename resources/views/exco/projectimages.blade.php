@@ -51,8 +51,8 @@
                                 @foreach($additionalimages as $img)
                                 <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
                                     <div class="position-relative">
-                                        <img src='{{ asset("project_additional_image/".$img->image) }}'
-                                            class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
+                                        <img src='{{ asset("corpersfiles/public/project_additional_image/".$img->image) }}'
+                                            class="w-100 shadow-1-strong rounded mb-4" alt="Project Additional Images" />
                                         <a href='/deleteprojectimage/{{ $img->id}}' type="button"
                                             class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2">Delete</a>
                                     </div>

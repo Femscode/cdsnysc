@@ -370,7 +370,7 @@
                     <div class="swiper-slide h-auto">
                         <div class="card card-portfolio">
                             <div class="card-img">
-                                <img src="{{ asset("project_additional_image/".$img->image) }}" alt="Image">
+                                <img src="{{ asset("corpersfiles/public/project_additional_image/".$img->image) }}" alt="Image">
                             </div>
                            
                         </div>
