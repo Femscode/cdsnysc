@@ -463,7 +463,7 @@
         <div class="w-100 align-self-end">
           <p class="nav d-block fs-xs text-center text-xl-start pb-2 mb-0">
             &copy; All rights reserved.
-            <a class="nav-link d-inline-block p-0" href="/" target="_blank" rel="noopener">SECUREWAYBILL</a>
+            <a class="nav-link d-inline-block p-0" href="/" target="_blank" rel="noopener">Corper's CDS</a>
 
           </p>
         </div>

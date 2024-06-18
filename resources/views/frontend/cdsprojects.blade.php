@@ -298,12 +298,7 @@
                     <div class="ps-md-3 ps-lg-0 mt-md-2 pt-md-4 pb-md-2">
                         <div class="d-sm-flex align-items-center justify-content-between pt-xl-1 mb-3 pb-3">
                             <h1 class="h2 mb-sm-0">CDS Project Collections</h1>
-                            <select class="form-select" style="max-width: 15rem;">
-                                <option value="Published">Year</option>
-                                <option value="Category">2024</option>
-                                <option value="Title AZ">2025</option>
-                                <option value="Title ZA">2026</option>
-                            </select>
+                          
                         </div>
 
                         <!-- Item -->

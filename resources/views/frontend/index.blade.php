@@ -7,7 +7,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>NYSC-CDS | HOME</title>
+  <title>Corper's CDS | HOME</title>
 
   <!-- SEO Meta Tags -->
   <meta name="description" content="NYSC - Community Development Service">
@@ -167,9 +167,10 @@
   <div class="page-loading active">
     <div class="page-loading-inner">
       
-      <img src='assets/img/nysclogo.png'/>  
+      <img src='assets/img/nysclogo.png'/><br>
       <div class="page-spinner">
-      </div><span>Loading...</span>
+      </div>
+      <span>Loading...</span>
     </div>
   </div>
 
@@ -265,8 +266,8 @@
 
               </h1>
               <div class="d-md-flex align-items-md-start">
-                <a href="/register"
-                  class="btn btn-lg btn-primary flex-shrink-0 me-md-4 mb-md-0 mb-sm-4 mb-3">Register As A Corp Member</a>
+                <a href="/register" class="btn btn-lg btn-primary flex-shrink-0 me-md-4 mb-md-0 mb-sm-4 mb-3">Register As A Corp Member</a>
+                <a href="/cdsprojects" class="btn btn-lg btn-success flex-shrink-0 me-md-4 mb-md-0 mb-sm-4 mb-3">View Past CDS Projects</a>
                 {{-- <p class="d-lg-block d-none mb-0 ps-md-3">CDS is an important aspect of the National Youth Service Corps. It is a compulsory activity aimed at encouraging community development, promoting national unity, and improving the skills and expertise of all corps members.</p> --}}
               </div>
             </div>
@@ -286,7 +287,7 @@
           <!-- Animated gfx -->
           <div class="col-sm-6 col-9 order-md-2 order-1">
             
-            <img class="mx-auto" src='/assets/img/cdsproject5.jpg' style='width:100%;border-radius:20px'/>
+            <img class="mx-auto" src='/assets/img/cdsproject4.jpg' style='width:100%;border-radius:20px'/>
             {{-- <lottie-player class="mx-auto" src="assets/json/animation-digital-agency.json" background="transparent.html"
               speed="1" loop autoplay>
             </lottie-player> --}}
@@ -785,7 +786,7 @@
             style="background-image: url(assets/img/landing/digital-agency/contact-bg.png);">
             <div class="py-md-5 py-4 text-center">
               <h3 class="h4 fw-normal text-light opacity-75">Want to know more? Let's talk!</h3>
-              <a href="mailto:email@example.com" class="display-6 text-light">info@nysc-cds.com</a>
+              <a href="mailto:email@example.com" class="display-6 text-light">support@corperscds.com</a>
               <div class="pt-md-5 pt-4 pb-md-2">
                 <a href="contacts-v1.html" class="btn btn-lg btn-light">Contact us</a>
               </div>
@@ -854,14 +855,14 @@
             </div>
             <div class="col-xl-4 col-lg-5 pt-2 pt-lg-0">
               <h6 class="mb-2">Contact Us</h6>
-              <a href="mailto:email@example.com" class="fw-medium">support@NYSC-CDS.com</a>
+              <a href="mailto:support@corperscds.com" class="fw-medium">support@corperscds.com</a>
             </div>
           </div>
         </div>
       </div>
       <p class="nav d-block fs-xs text-center text-md-start pb-2 pb-lg-0 mb-0">
         &copy; All rights reserved
-        <a class="nav-link d-inline-block p-0" href="#" target="_blank" rel="noopener">NYSC-CDS</a>
+        <a class="nav-link d-inline-block p-0" href="#" target="_blank" rel="noopener">Corper's CDS</a>
       </p>
     </div>
   </footer>
