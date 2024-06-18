@@ -310,7 +310,7 @@
                                     aria-label="Cover image"></a>
                                 <div class="col-sm-8">
                                     <div class="card-body">
-                                        <div class="fs-sm text-muted mb-1">{{ $project->date }}</div>
+                                        <div class="fs-sm text-muted mb-1">{{ $project->date }} | {{ $project->state }} | {{ $project->lga }}</div>
                                         <h2 class="h4 pb-1 mb-2">
                                             <a href="#">{{ $project->title }}</a>
                                         </h2>

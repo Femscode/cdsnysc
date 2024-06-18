@@ -249,7 +249,7 @@
         <!-- Page title -->
         <section class="container pb-4 mb-2 mb-lg-3">
             <h1>{{ $project->title }}</h1>
-            <p class="text-muted mb-0">{{ $project->state }} / {{ $project->lga }} / {{ $project->cdsname->name }} / {{
+            <p class="text-muted mb-0">{{ $project->state }} / {{ $project->lga }} / {{ $project->cdsname->name ?? "" }} / {{
                 $project->batch }} / {{ $project->year }} </p>
         </section>
 
